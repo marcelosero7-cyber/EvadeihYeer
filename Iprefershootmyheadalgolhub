@@ -1,0 +1,158 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Lighting = game:GetService("Lighting")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local message = "more script keyless here https://discord.gg/yX7tyWCR"
+
+pcall(function()
+    setclipboard(message)
+end)
+
+pcall(function()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Clipboard";
+        Text = "(Free ranks in discord for 100 first) more scripts steal a brainrot,gag and more keyless here!";
+        Duration = 5;
+    })
+end)
+
+local OriginalAmbient = Lighting.Ambient
+local OriginalBrightness = Lighting.Brightness
+local OriginalClockTime = Lighting.ClockTime
+
+local function enableFullBright()
+    Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+    Lighting.Brightness = 2
+    Lighting.ClockTime = 12
+end
+
+local function enableSpeedBoost()
+    local Character = LocalPlayer.Character
+    if not Character then return end
+    local HRP = Character:WaitForChild("HumanoidRootPart")
+    if HRP:FindFirstChild("SpeedBoost") then
+        HRP.SpeedBoost:Destroy()
+    end
+    local BV = Instance.new("BodyVelocity")
+    BV.Name = "SpeedBoost"
+    BV.MaxForce = Vector3.new(9000000000,0,9000000000)
+    BV.Parent = HRP
+    local Speed = 45
+    task.spawn(function()
+        local Hum = Character:WaitForChild("Humanoid")
+        while BV.Parent do
+            BV.Velocity = Hum.MoveDirection * Speed
+            task.wait()
+        end
+    end)
+end
+
+local function CreateGUI()
+    if PlayerGui:FindFirstChild("AlgolHub") then
+        PlayerGui.AlgolHub:Destroy()
+    end
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "AlgolHub"
+    ScreenGui.Parent = PlayerGui
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Size = UDim2.new(0, 220, 0, 220)
+    MainFrame.Position = UDim2.new(0.5, -110, 0.5, -110)
+    MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 25)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Active = true
+    MainFrame.Draggable = true
+    MainFrame.Parent = ScreenGui
+    local Corner = Instance.new("UICorner")
+    Corner.CornerRadius = UDim.new(0, 12)
+    Corner.Parent = MainFrame
+    local Shadow = Instance.new("Frame")
+    Shadow.Size = UDim2.new(1, 6, 1, 6)
+    Shadow.Position = UDim2.new(0, -3, 0, -3)
+    Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Shadow.BackgroundTransparency = 0.8
+    Shadow.ZIndex = -1
+    Shadow.Parent = MainFrame
+    local ShadowCorner = Instance.new("UICorner")
+    ShadowCorner.CornerRadius = UDim.new(0, 15)
+    ShadowCorner.Parent = Shadow
+    local Gradient = Instance.new("UIGradient")
+    Gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(45, 20, 80)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(25, 15, 45)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 10, 30))
+    }
+    Gradient.Rotation = 135
+    Gradient.Parent = MainFrame
+    local Header = Instance.new("Frame")
+    Header.Size = UDim2.new(1, 0, 0, 40)
+    Header.Position = UDim2.new(0, 0, 0, 0)
+    Header.BackgroundTransparency = 1
+    Header.Parent = MainFrame
+    local Title = Instance.new("TextLabel")
+    Title.Size = UDim2.new(1, -40, 1, 0)
+    Title.Position = UDim2.new(0, 15, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Text = " Algol Hub "
+    Title.TextColor3 = Color3.fromRGB(220, 180, 255)
+    Title.Font = Enum.Font.GothamBold
+    Title.TextSize = 18
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Parent = Header
+    local CloseButton = Instance.new("TextButton")
+    CloseButton.Size = UDim2.new(0, 30, 0, 30)
+    CloseButton.Position = UDim2.new(1, -35, 0, 5)
+    CloseButton.BackgroundColor3 = Color3.fromRGB(80, 30, 30)
+    CloseButton.Text = "x"
+    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CloseButton.Font = Enum.Font.GothamBold
+    CloseButton.TextSize = 20
+    CloseButton.Parent = Header
+    local CloseCorner = Instance.new("UICorner")
+    CloseCorner.CornerRadius = UDim.new(0, 8)
+    CloseCorner.Parent = CloseButton
+    CloseButton.MouseButton1Click:Connect(function()
+        ScreenGui:Destroy()
+    end)
+    local function CreateButton(name, position, callback)
+        local btn = Instance.new("TextButton")
+        btn.Size = UDim2.new(0, 180, 0, 35)
+        btn.Position = position
+        btn.BackgroundColor3 = Color3.fromRGB(35, 25, 55)
+        btn.BorderSizePixel = 0
+        btn.Text = name
+        btn.TextColor3 = Color3.fromRGB(200, 200, 255)
+        btn.Font = Enum.Font.Gotham
+        btn.TextSize = 16
+        btn.Parent = MainFrame
+        local BtnCorner = Instance.new("UICorner")
+        BtnCorner.CornerRadius = UDim.new(0, 8)
+        BtnCorner.Parent = btn
+        local BtnGradient = Instance.new("UIGradient")
+        BtnGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 30, 65)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 20, 50))
+        }
+        BtnGradient.Rotation = 90
+        BtnGradient.Parent = btn
+        btn.MouseButton1Click:Connect(callback)
+    end
+    local function Revive()
+        ReplicatedStorage.Events.Player.ChangePlayerMode:FireServer(true)
+        ReplicatedStorage.Events.Character.ToolAction:FireServer(0, 15)
+        ReplicatedStorage.Events.Character.PassCharacterInfo:FireServer(nil, {1})
+    end
+    CreateButton(" Speed Boost ", UDim2.new(0, 20, 0, 55), enableSpeedBoost)
+    CreateButton(" Revive (Free) ", UDim2.new(0, 20, 0, 100), Revive)
+    CreateButton(" Full Bright ", UDim2.new(0, 20, 0, 145), enableFullBright)
+end
+
+CreateGUI()
+
+LocalPlayer.CharacterAdded:Connect(function()
+    wait(1)
+    CreateGUI()
+    enableFullBright()
+    enableSpeedBoost()
+end)
