@@ -4,7 +4,7 @@ local Lighting = game:GetService("Lighting")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
-local message = "more script keyless here https://discord.gg/yXfAsJ92"
+local message = "more script keyless here https://discord.gg/gNSuMDGP"
 
 pcall(function()
     setclipboard(message)
